@@ -1,0 +1,78 @@
+# DACON - 태양광 발전량 예측 AI 경진대회
+
+
+
+## 태양광 발전량 | 시계열ㅣPinball Loss
+
+![대회요약](C:\Users\OPGG\Desktop\study\dacon\solarPower\image\대회요약.PNG)
+
+### https://dacon.io/competitions/official/235680/overview/description
+
+- ## 데이터
+
+  - train.csv : 훈련용 데이터 (1개 파일)
+
+    - 3년(Day 0~ Day1094) 동안의 기상 데이터, 발전량(TARGET) 데이터 
+
+    
+
+  - test.csv : 정답용 데이터 (81개 파일)
+
+    - 2년 동안의 기상 데이터, 발전량(TARGET) 데이터 제공 
+
+  ```python
+  train = pd.read_csv('./data/train/train.csv')
+  train
+  ```
+
+  ![image-20210603230800863](C:\Users\OPGG\Desktop\study\dacon\solarPower\image\train_data.png)
+
+  - Hour - 시간
+  - Minute - 분
+  - DHI - 수평면 산란일사량(Diffuse Horizontal Irradiance (W/m2))
+  - DNI - 직달일사량(Direct Normal Irradiance (W/m2))
+  - WS - 풍속(Wind Speed (m/s))
+  - RH - 상대습도(Relative Humidity (%))
+  - T - 기온(Temperature (Degree C))
+  - Target - 태양광 발전량 (kW)
+
+
+
+## 데이터 전처리
+
+- 피쳐 재생산
+
+- ```python
+  'theta', 'Hour_bef', 'IsRain', 'Zenith', 'Elevation','GHI', 'Season','Aggr','Daytime','RH_bef','Cos_hour','Target_hour_mean'
+  ```
+
+  
+
+
+
+
+
+## 모델
+
+- LGBM 모델 사용
+
+- ```python
+  # Get the model and the predictions in (a) - (b)
+  def LGBM(q, X_train, Y_train, X_valid, Y_valid, X_test):
+      
+      # (a) Modeling  
+      model = LGBMRegressor( objective='quantile', alpha=q,
+                           n_estimators=10000, bagging_fraction=0.7, learning_rate=0.027)                   
+                           
+      model.fit(X_train, Y_train, eval_metric = ['quantile'], 
+            eval_set=[(X_valid, Y_valid)], early_stopping_rounds=300, verbose=0)
+      
+      #fig,ax = plt.subplots(figsize=(10,6))
+      #plot_importance(model,ax=ax)
+  
+      # (b) Predictions
+      pred = pd.Series(model.predict(X_test).round(2))
+      return pred, model
+  ```
+
+  
