@@ -2,7 +2,7 @@
 
 
 
-## 태양광 발전량 | 시계열ㅣPinball Loss
+## 시계열ㅣPinball Loss | LGBM
 
 ![대회요약](https://user-images.githubusercontent.com/28820900/120660100-f1d60780-c4c1-11eb-9a87-dcac0571b5d8.PNG)
 
