@@ -42,7 +42,8 @@
 
 - 차왕철, 숭실대학교, 2015, 태양광발전에 영향을 미치는 요소 분석을 통한 연간 발전량 예측에 관한 연구
 
-  - ![]()
+  ![논문_1](https://user-images.githubusercontent.com/28820900/120928447-a4ef6c80-c71f-11eb-80ef-c48be859ff7c.PNG)
+  
   - 제안 모델에서는 시계열의 특성을 고려하지 않고, 태양 고도를 결정짓는 요소들과 기상 상태를 추정할 수 있는 주요 기상 요소들을 고려하여 신경망 모델을 이용하여 단기 예측을 수행
 
   
@@ -73,11 +74,12 @@
 
 - 시즌별 발전량(TARGET) 분포
 
-  ![]()
+![시즌별 data 분포](https://user-images.githubusercontent.com/28820900/120928440-9ef98b80-c71f-11eb-99a9-421dd9b41992.PNG)
+
 
 - Daytime 별 발전량(TARGET) 분포
 
-  ![]()
+![daytime별 data 분포](https://user-images.githubusercontent.com/28820900/120928432-943ef680-c71f-11eb-9b80-1cb646a8aa4b.PNG)
 
 ## 모델
 
