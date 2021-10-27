@@ -70,11 +70,15 @@
 
 ### isRain :  비가 오는지 여부. 습도 데이터를 사용하여 생성.
 
+### Weather : 습도와 온도 등을 기준.
+
+### DayTime : 해당 날짜에 해가 떠있는 시간을 계산, Clustering 하여 평균과 표준편차를 구하여 피쳐 추가에 사용.
+
 
 
 ## 데이터 시각화
 
-- 시즌별 발전량(TARGET) 분포
+- Wheather 별 발전량(TARGET) 분포
 
 ![시즌별 data 분포](https://user-images.githubusercontent.com/28820900/120928440-9ef98b80-c71f-11eb-99a9-421dd9b41992.PNG)
 
@@ -82,6 +86,8 @@
 - Daytime 별 발전량(TARGET) 분포
 
 ![daytime별 data 분포](https://user-images.githubusercontent.com/28820900/120928432-943ef680-c71f-11eb-9b80-1cb646a8aa4b.PNG)
+
+  - 각 index 는 
 
 ## 모델
 
