@@ -58,7 +58,7 @@
 
 ### GHI = DHI + (DNI X Cosθz)
 
-- θz : 천정각 (zenith anfle)
+- θz : 천정각 (zenith angle)
 
 - DNI와 DHI를 합한 GHI가 있습니다.
 
