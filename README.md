@@ -53,10 +53,10 @@
 ## 피쳐 재생산
 
 ```python
-'theta', 'Hour_bef', 'IsRain', 'Zenith', 'Elevation','GHI', 'Season','Aggr','Daytime','RH_bef','Cos_hour','Target_hour_mean'
+'theta', 'target_hour_bef', 'IsRain', 'Zenith', 'Elevation','GHI' ,'Aggr','Daytime','RH_hour_bef','Cos_hour','Target_hour_mean'
 ```
 
-### GHI = DHI + (DNI X Cosθz)
+#### GHI = DHI + (DNI X Cosθz)
 
 - θz : 천정각 (zenith angle)
 
@@ -64,13 +64,16 @@
 
 - 단일 변수로 당일 발전량(TARGET)을 설명할 때 DNI, DHI보다 GHI가 설명력이 높으며, GHI 파생변수들이 설명력이 좋음.
 
-### Zenith : 천정각
+#### target_hour_bef / RH_hour_bef : 30분 전의 Target, RH 값, 시계열 모델을 사용하지 않기에 직전 시간의 Target 정보를 모델에 포함시켜주는 것이 효과적
 
-### Target_hour_mean : 같은 시간 발전량(TARGET)의 평균
+#### Zenith : 천정각
 
-### isRain :  비가 오는지 여부. 습도 데이터를 사용하여 생성.
+#### Target_hour_mean : 같은 시간 발전량(TARGET)의 평균
 
-### DayTime : 해당 날짜에 해가 떠있는 시간을 계산, Grouping & Aggregation 하여 평균과 표준편차를 구하여 피쳐 추가에 사용.
+#### isRain :  비가 오는지 여부. 습도 데이터를 사용하여 생성.
+
+#### DayTime : 해당 날짜에 해가 떠있는 시간을 계산, Grouping & Aggregation 하여 평균과 표준편차를 구하여 피쳐 추가에 사용.
+
 
 
 
@@ -81,12 +84,12 @@
 ![daytime별 data 분포](https://user-images.githubusercontent.com/28820900/120928432-943ef680-c71f-11eb-9b80-1cb646a8aa4b.PNG)
 
   - 각 index 는 test data 의 각 행을 의미하며 각 행은 7일치의 데이터로 다른 행들과 시간적으로 독립적, 
-  - Daytime 을 이용하여 이러한 index 들을 효과적으로 분류해낼 수 있는 지표로 판단. (Grouping 에 효과적)
+  - Daytime 을 이용하여 이러한 index 들을 효과적으로 분류해낼 수 있는 지표라 판단. (Grouping 에 효과적)
 
 ## 모델
 
 - LGBM 모델 사용
-  - 제안 모델에서는 시계열의 특성을 고려하지 않고, 태양 고도를 결정짓는 요소들과 기상 상태를 추정할 수 있는 주요 기상 요소들을 고려하여 신경망 모델을 이용하여 단기 예측을 수행
+  - 제안 모델에서는 시계열의 특성을 고려하지 않고, 태양 고도를 결정짓는 요소들과 기상 상태를 추정할 수 있는 주요 기상 요소들을 고려하여 신경망 모델을 이용하여 단기 예측을 수행 (Day6 -> Day7, Day8 예측)
 
 - ```python
   # Get the model and the predictions in (a) - (b)
